@@ -30,10 +30,10 @@ public class AttributeHandler {
     }
 
     private void addBodyAttributes() {
-        bodyNormalAttributes.put("damage", new NormalAttribute("Damage", "Determines the amount of damage your shots do", 10, 20, 10, 50, true, true));
-        bodyNormalAttributes.put("criticalDamage", new NormalAttribute("Critical Damage", "Determines the damage of a critical hit", 3, 10, 3, 20, true, true));
-        bodyNormalAttributes.put("fireRate", new NormalAttribute("Fire Rate", "Determines the rate at which the weapon fires", 5, 15, 10, 40, true, true));
-        bodyNormalAttributes.put("weight", new NormalAttribute("Weight", "Determines the weight of the weapon, affecting the speed of the player", 5, 20, 10, 25, true, true));
+        bodyNormalAttributes.put("damage", new NormalAttribute("Damage", "Determines the amount of damage your shots do", 3, 10, 5, 50, true, true));
+        bodyNormalAttributes.put("criticalDamage", new NormalAttribute("Critical Damage", "Determines the damage of a critical hit", 3, 10, 3, 25, true, true));
+        bodyNormalAttributes.put("fireRate", new NormalAttribute("Fire Rate", "Determines the rate at which the weapon fires", 3, 10, 10, 60, true, true));
+        bodyNormalAttributes.put("weight", new NormalAttribute("Weight", "Determines the weight of the weapon, affecting the speed of the player", 3,15, 10, 25, true, true));
 
         bodyUniqueAttributes.put("accelerated", new UniqueAttribute("Accelerated", "The first half of your magazine shoots x% faster", WeaponConfig.RARITY_UNCOMMON));
         bodyUniqueAttributes.put("wildcard", new UniqueAttribute("Wildcard", "A stat multiplier on the body is doubled, but another random stat is halved", WeaponConfig.RARITY_RARE));
@@ -54,9 +54,9 @@ public class AttributeHandler {
     }
 
     private void addStockAttributes() {
-        stockNormalAttributes.put("accuracy", new NormalAttribute("Accuracy", "Determines the likeliness of your shots hitting where you’re aiming", 10, 30, 10, 30, true, false));
-        stockNormalAttributes.put("criticalChance", new NormalAttribute("Critical Chance", "Determines the chance that your shot will deal critical damage", 3, 15, 3, 15, true, true));
-        stockNormalAttributes.put("criticalDamage", new NormalAttribute("Critical Damage", "Determines the damage of a critical hit", 5, 20, 5, 20, true, false));
+        stockNormalAttributes.put("accuracy", new NormalAttribute("Accuracy", "Determines the likeliness of your shots hitting where you’re aiming", 2, 10, 10, 50, true, false));
+        stockNormalAttributes.put("criticalChance", new NormalAttribute("Critical Chance", "Determines the chance that your shot will deal critical damage", 1, 5, 3, 15, true, true));
+        stockNormalAttributes.put("criticalDamage", new NormalAttribute("Critical Damage", "Determines the damage of a critical hit", 3, 10, 5, 40, true, false));
 
         List<String> overheatedExceptions = new ArrayList<>(); overheatedExceptions.add("Unstable");
         stockUniqueAttributes.put("overheated", new UniqueAttribute("Overheated", "Accuracy decreases as you fire", WeaponConfig.RARITY_COMMON, overheatedExceptions));
@@ -73,9 +73,9 @@ public class AttributeHandler {
     }
 
     private void addSightAttributes() {
-        sightNormalAttributes.put("penetration", new NormalAttribute("Penetration", "Determines the damage penalty for penetration shots", 30, 50, 30, 50, true, true));
-        sightNormalAttributes.put("criticalChance", new NormalAttribute("Critical Chance", "Determines the chance that your shot will deal critical damage", 3, 15, 3, 15, true, false));
-        sightNormalAttributes.put("accuracy", new NormalAttribute("Accuracy", "Determines the likeliness of your shots hitting where you’re aiming", 10, 30, 10, 30, true, true));
+        sightNormalAttributes.put("penetration", new NormalAttribute("Penetration", "Determines the damage penalty for penetration shots", 5, 15, 10, 50, true, true));
+        sightNormalAttributes.put("criticalChance", new NormalAttribute("Critical Chance", "Determines the chance that your shot will deal critical damage", 1, 5, 3, 15, true, false));
+        sightNormalAttributes.put("accuracy", new NormalAttribute("Accuracy", "Determines the likeliness of your shots hitting where you’re aiming", 5, 15, 10, 30, true, true));
 
         sightUniqueAttributes.put("penetrating", new UniqueAttribute("Penetrating", "Shots fired with this weapon have x% chance to penetrate what they hit", WeaponConfig.RARITY_COMMON));
         sightUniqueAttributes.put("oneShot", new UniqueAttribute("One-Shot", "The first shot after a fresh reload has 100% accuracy", WeaponConfig.RARITY_COMMON));
@@ -85,8 +85,8 @@ public class AttributeHandler {
     }
 
     private void addMagazineAttributes() {
-        magazineNormalAttributes.put("magCapacity", new NormalAttribute("Magazine Capacity", "Determines the number of rounds your magazine can hold", 15, 30, 15, 30, true, true));
-        magazineNormalAttributes.put("reloadSpeed", new NormalAttribute("Reload Speed", "Determines the time it takes to reload your weapon", 15, 30, 15, 30, true, true));
+        magazineNormalAttributes.put("magCapacity", new NormalAttribute("Magazine Capacity", "Determines the number of rounds your magazine can hold", 10, 15, 15, 50, true, true));
+        magazineNormalAttributes.put("reloadSpeed", new NormalAttribute("Reload Speed", "Determines the time it takes to reload your weapon", 15, 20, 15, 20, true, true));
         magazineNormalAttributes.put("fireRate", new NormalAttribute("Fire Rate", "Determines the rate at which the weapon fires", 10, 20, 10, 20, true, true));
 
         List<String> frugalExceptions = new ArrayList<>(); frugalExceptions.add("Wasteful");
@@ -107,11 +107,11 @@ public class AttributeHandler {
     }
 
     private void addBarrelAttributes() {
-        barrelNormalAttributes.put("accuracy", new NormalAttribute("Accuracy", "Determines the likeliness of your shots hitting where you’re aiming", 10, 30, 10, 30, false, true));
-        barrelNormalAttributes.put("fireRate", new NormalAttribute("Fire Rate", "Determines the rate at which the weapon fires", 10, 20, 10, 20, true, false));
-        barrelNormalAttributes.put("damage", new NormalAttribute("Damage", "Determines the amount of damage your shots do", 10, 20, 10, 20, true, false));
-        barrelNormalAttributes.put("range", new NormalAttribute("Range", "Determines the range your bullets travel before dropping off", 15, 30, 15, 30, true, true));
-        barrelNormalAttributes.put("spread", new NormalAttribute("Spread", "Determines the spread between projectiles exiting your weapon", 5, 20, 5, 20, true, true));
+        barrelNormalAttributes.put("accuracy", new NormalAttribute("Accuracy", "Determines the likeliness of your shots hitting where you’re aiming", 10, 30, 5, 20, false, true));
+        barrelNormalAttributes.put("fireRate", new NormalAttribute("Fire Rate", "Determines the rate at which the weapon fires", 5, 10, 10, 20, true, false));
+        barrelNormalAttributes.put("damage", new NormalAttribute("Damage", "Determines the amount of damage your shots do", 5, 10, 10, 20, true, false));
+        barrelNormalAttributes.put("range", new NormalAttribute("Range", "Determines the range your bullets travel before dropping off", 10, 20, 5, 20, true, true));
+        barrelNormalAttributes.put("spread", new NormalAttribute("Spread", "Determines the spread between projectiles exiting your weapon", 5, 10, 5, 25, true, true));
 
         barrelUniqueAttributes.put("ricochet", new UniqueAttribute("Ricochet", "x% chance the shot will ricochet and damage another enemy for half damage", WeaponConfig.RARITY_COMMON));
         barrelUniqueAttributes.put("overcharged", new UniqueAttribute("Overcharged", "This weapon will randomly become overcharged and temporarily enter a state of increased performance that increases accuracy by x% and critical damage by x%", WeaponConfig.RARITY_COMMON));
