@@ -22,6 +22,9 @@ public class WeaponConfig {
     public static final int RARITY_COMMON = 0;
     public static final int RARITY_UNCOMMON = 50;
     public static final int RARITY_RARE = 30;
+    public static final int UNIQUE_NAME_PRE = 0;
+    public static final int UNIQUE_NAME_POST = 1;
+    public static final int UNIQUE_NAME_NONE = 2;
 
     public static int getLevelBracket(int level) {
         int div = level / 10;

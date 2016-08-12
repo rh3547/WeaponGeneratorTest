@@ -1,11 +1,12 @@
 package Weapons;
 
+import Attributes.Attribute;
+import Attributes.UniqueAttribute;
 import Main.WeaponConfig;
 import Parts.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.security.KeyStore;
+import java.util.*;
 
 /**
  * Created by Ryan Hochmuth on 8/6/2016.
@@ -94,11 +95,60 @@ public class Weapon {
         magazinePart = magazine;
         barrelPart = barrel;
 
+        determineNames();
         rollStats();
     }
 
     private void rollStats() {
 
+    }
+
+    private void determineNames() {
+        List<UniqueAttribute> attributeList = new ArrayList<>();
+
+        for (Attribute attr : bodyPart.getAttributes()) {
+            if (attr instanceof UniqueAttribute)
+                attributeList.add((UniqueAttribute)attr);
+        }
+
+        for (Attribute attr : stockPart.getAttributes()) {
+            if (attr instanceof UniqueAttribute)
+                attributeList.add((UniqueAttribute)attr);
+        }
+
+        for (Attribute attr : sightPart.getAttributes()) {
+            if (attr instanceof UniqueAttribute)
+                attributeList.add((UniqueAttribute)attr);
+        }
+
+        for (Attribute attr : magazinePart.getAttributes()) {
+            if (attr instanceof UniqueAttribute)
+                attributeList.add((UniqueAttribute)attr);
+        }
+
+        for (Attribute attr : barrelPart.getAttributes()) {
+            if (attr instanceof UniqueAttribute)
+                attributeList.add((UniqueAttribute)attr);
+        }
+
+        Collections.sort(attributeList, new Comparator<UniqueAttribute>() {
+            @Override
+            public int compare(UniqueAttribute o1, UniqueAttribute o2) {
+                if (o1.getRarity() > o2.getRarity())
+                    return 1;
+                else if (o1.getRarity() < o2.getRarity())
+                    return -1;
+
+                return 0;
+            }
+        });
+
+        int numPreNames = 0;
+        int numPostNames = 0;
+
+        for (UniqueAttribute attr : attributeList) {
+            
+        }
     }
 
     public String getName() {

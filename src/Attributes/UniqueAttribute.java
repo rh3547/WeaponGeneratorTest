@@ -9,6 +9,7 @@ import java.util.List;
 public class UniqueAttribute extends Attribute {
     private int rarity;
 
+
     public UniqueAttribute(String name, String description, int rarity) {
         super(name, description);
         this.rarity = rarity;
