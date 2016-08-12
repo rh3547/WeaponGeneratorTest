@@ -144,10 +144,41 @@ public class Weapon {
         });
 
         int numPreNames = 0;
+        int maxPreNames = 2;
+        int numMidNames = 0;
+        int maxMidNames = 1;
         int numPostNames = 0;
+        int maxPostNames = 1;
 
         for (UniqueAttribute attr : attributeList) {
-            
+            switch(attr.getNameType()) {
+                case WeaponConfig.UNIQUE_NAME_NONE:
+                    break;
+
+                case WeaponConfig.UNIQUE_NAME_PRE:
+                    if (numPreNames < maxPreNames) {
+                        addPreName(attr.getName());
+                        numPreNames++;
+                    }
+                    break;
+
+                case WeaponConfig.UNIQUE_NAME_MID:
+                    if (numMidNames < maxMidNames) {
+                        addMainName(attr.getName());
+                        numMidNames++;
+                    }
+                    break;
+
+                case WeaponConfig.UNIQUE_NAME_POST:
+                    if (numPostNames < maxPostNames) {
+                        addPostName(attr.getName());
+                        numPostNames++;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 
@@ -173,12 +204,12 @@ public class Weapon {
         if (mainNames.equals(""))
             mainNames = name;
         else
-            mainNames += " " + name;
+            mainNames = name + " " + mainNames;
     }
 
     public void addPostName(String name) {
         if (postNames.equals(""))
-            postNames = name;
+            postNames = "of " + name;
         else
             postNames += " " + name;
     }

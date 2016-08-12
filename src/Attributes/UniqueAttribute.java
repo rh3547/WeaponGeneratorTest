@@ -8,16 +8,18 @@ import java.util.List;
  */
 public class UniqueAttribute extends Attribute {
     private int rarity;
+    private int nameType;
 
-
-    public UniqueAttribute(String name, String description, int rarity) {
+    public UniqueAttribute(String name, String description, int rarity, int nameType) {
         super(name, description);
         this.rarity = rarity;
+        this.nameType = nameType;
     }
 
-    public UniqueAttribute(String name, String description, int rarity, List<String> exceptions) {
+    public UniqueAttribute(String name, String description, int rarity, List<String> exceptions, int nameType) {
         super(name, description, exceptions);
         this.rarity = rarity;
+        this.nameType = nameType;
     }
 
     @Override
@@ -31,5 +33,13 @@ public class UniqueAttribute extends Attribute {
 
     public void setRarity(int rarity) {
         this.rarity = rarity;
+    }
+
+    public int getNameType() {
+        return nameType;
+    }
+
+    public void setNameType(int nameType) {
+        this.nameType = nameType;
     }
 }
