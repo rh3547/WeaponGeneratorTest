@@ -32,7 +32,7 @@ public class Weapon {
         int range = WeaponConfig.WEAPON_LEVEL_RANGE;
 
         if (level > range) {
-            Random rand = new Random();
+            Random rand = WeaponConfig.getRandom();
             int num = rand.nextInt(5) - range;
 
             return level + num;
@@ -42,7 +42,7 @@ public class Weapon {
     }
 
     public void generateWeapon(boolean generateName) {
-        Random rand = new Random();
+        Random rand = WeaponConfig.getRandom();
 
         PartModel bodyModel = PartHandler.instance.getBodyPart(rand.nextInt(WeaponConfig.NUM_BODY_PARTS));
         PartModel stockModel = PartHandler.instance.getStockPart(rand.nextInt(WeaponConfig.NUM_STOCK_PARTS));

@@ -6,8 +6,6 @@ import Attributes.UniqueAttribute;
 import Main.WeaponConfig;
 import Weapons.WeaponType;
 
-import java.util.Random;
-
 /**
  * Created by Ryan Hochmuth on 8/6/2016.
  */

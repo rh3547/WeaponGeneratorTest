@@ -7,6 +7,7 @@ import Weapons.Weapon;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
 
 /**
  * Created by Ryan Hochmuth on 8/6/2016.
@@ -14,6 +15,8 @@ import java.awt.event.*;
 public class WeaponGenerator implements ActionListener {
 
     private JFrame frame;
+    private JLabel seedLbl;
+    private JTextField seedField;
     private JLabel lvlLbl;
     private JTextField lvlField;
     private JTextArea resultTA;
@@ -34,18 +37,29 @@ public class WeaponGenerator implements ActionListener {
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);
         frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         lvlLbl = new JLabel();
         lvlLbl.setText("Character Level");
-        lvlLbl.setSize(windowWidth - 5 - 50, 30);
+        lvlLbl.setSize(((windowWidth - 5 - 50) / 2) - 20, 30);
         lvlLbl.setLocation(25, 10);
         frame.add(lvlLbl);
 
         lvlField = new JTextField();
-        lvlField.setSize(windowWidth - 5 - 50, 30);
+        lvlField.setSize(((windowWidth - 5 - 50) / 2) - 20, 30);
         lvlField.setLocation(25, 40);
         frame.add(lvlField);
+
+        seedLbl = new JLabel();
+        seedLbl.setText("Seed");
+        seedLbl.setSize(((windowWidth - 5 - 50) / 2) + 5, 30);
+        seedLbl.setLocation(((windowWidth - 5 - 50) / 2) + 20, 10);
+        frame.add(seedLbl);
+
+        seedField = new JTextField();
+        seedField.setSize(((windowWidth - 5 - 50) / 2) + 5, 30);
+        seedField.setLocation(((windowWidth - 5 - 50) / 2) + 20, 40);
+        frame.add(seedField);
 
         resultTA = new JTextArea();
         resultTA.setEditable(false);
@@ -83,6 +97,7 @@ public class WeaponGenerator implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == generateBtn) {
             String lvlStr = lvlField.getText();
+            String seedStr = seedField.getText();
             boolean invalid = false;
             int lvl = 0;
 
@@ -105,9 +120,22 @@ public class WeaponGenerator implements ActionListener {
                         JOptionPane.PLAIN_MESSAGE);
             }
             else {
+                long seed = 0;
+                if (seedStr.equals("")) {
+                    seed = new Random().nextLong();
+                    WeaponConfig.useSeed = true;
+                    WeaponConfig.updateSeed(seed);
+                }
+                else {
+                    seed = Long.parseLong(seedStr);
+                    WeaponConfig.updateSeed(seed);
+                    WeaponConfig.useSeed = true;
+                }
+
                 Weapon weapon = generateWeapon(lvl);
 
                 String result = "Weapon:\n\n";
+                result += "Seed: " + seed + "\n";
                 result += "Level: " + weapon.getLevel() + "\n";
                 result += weapon.getName() + "\n";
 

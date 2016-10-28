@@ -1,10 +1,7 @@
 package Attributes;
 
-import Main.WeaponConfig;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Ryan Hochmuth on 8/6/2016.

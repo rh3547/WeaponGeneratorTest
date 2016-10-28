@@ -44,7 +44,7 @@ public abstract class Part {
     }
 
     protected boolean rollUniqueChance(UniqueAttribute attr) {
-        Random rand = new Random();
+        Random rand = WeaponConfig.getRandom();
 
         switch(attr.getRarity()) {
             case WeaponConfig.RARITY_COMMON:

@@ -125,7 +125,7 @@ public class AttributeHandler {
 
     public NormalAttribute getNormalBodyAttribute() {
         List<String> keysAsArray = new ArrayList<>(bodyNormalAttributes.keySet());
-        int num = new Random().nextInt(keysAsArray.size());
+        int num = WeaponConfig.getRandom().nextInt(keysAsArray.size());
         String key = keysAsArray.get(num);
 
         return copyNormalAttribute(bodyNormalAttributes.get(key));
@@ -133,7 +133,7 @@ public class AttributeHandler {
 
     public UniqueAttribute getUniqueBodyAttribute() {
         List<String> keysAsArray = new ArrayList<>(bodyUniqueAttributes.keySet());
-        int num = new Random().nextInt(keysAsArray.size());
+        int num = WeaponConfig.getRandom().nextInt(keysAsArray.size());
         String key = keysAsArray.get(num);
 
         return copyUniqueAttribute(bodyUniqueAttributes.get(key));
@@ -141,7 +141,7 @@ public class AttributeHandler {
 
     public NormalAttribute getNormalStockAttribute() {
         List<String> keysAsArray = new ArrayList<>(stockNormalAttributes.keySet());
-        int num = new Random().nextInt(keysAsArray.size());
+        int num = WeaponConfig.getRandom().nextInt(keysAsArray.size());
         String key = keysAsArray.get(num);
 
         return copyNormalAttribute(stockNormalAttributes.get(key));
@@ -149,7 +149,7 @@ public class AttributeHandler {
 
     public UniqueAttribute getUniqueStockAttribute() {
         List<String> keysAsArray = new ArrayList<>(stockUniqueAttributes.keySet());
-        int num = new Random().nextInt(keysAsArray.size());
+        int num = WeaponConfig.getRandom().nextInt(keysAsArray.size());
         String key = keysAsArray.get(num);
 
         return copyUniqueAttribute(stockUniqueAttributes.get(key));
@@ -157,7 +157,7 @@ public class AttributeHandler {
 
     public NormalAttribute getNormalSightAttribute() {
         List<String> keysAsArray = new ArrayList<>(sightNormalAttributes.keySet());
-        int num = new Random().nextInt(keysAsArray.size());
+        int num = WeaponConfig.getRandom().nextInt(keysAsArray.size());
         String key = keysAsArray.get(num);
 
         return copyNormalAttribute(sightNormalAttributes.get(key));
@@ -165,7 +165,7 @@ public class AttributeHandler {
 
     public UniqueAttribute getUniqueSightAttribute() {
         List<String> keysAsArray = new ArrayList<>(sightUniqueAttributes.keySet());
-        int num = new Random().nextInt(keysAsArray.size());
+        int num = WeaponConfig.getRandom().nextInt(keysAsArray.size());
         String key = keysAsArray.get(num);
 
         return copyUniqueAttribute(sightUniqueAttributes.get(key));
@@ -173,7 +173,7 @@ public class AttributeHandler {
 
     public NormalAttribute getNormalMagazineAttribute() {
         List<String> keysAsArray = new ArrayList<>(magazineNormalAttributes.keySet());
-        int num = new Random().nextInt(keysAsArray.size());
+        int num = WeaponConfig.getRandom().nextInt(keysAsArray.size());
         String key = keysAsArray.get(num);
 
         return copyNormalAttribute(magazineNormalAttributes.get(key));
@@ -181,7 +181,7 @@ public class AttributeHandler {
 
     public UniqueAttribute getUniqueMagazineAttribute() {
         List<String> keysAsArray = new ArrayList<>(magazineUniqueAttributes.keySet());
-        int num = new Random().nextInt(keysAsArray.size());
+        int num = WeaponConfig.getRandom().nextInt(keysAsArray.size());
         String key = keysAsArray.get(num);
 
         return copyUniqueAttribute(magazineUniqueAttributes.get(key));
@@ -189,7 +189,7 @@ public class AttributeHandler {
 
     public NormalAttribute getNormalBarrelAttribute() {
         List<String> keysAsArray = new ArrayList<>(barrelNormalAttributes.keySet());
-        int num = new Random().nextInt(keysAsArray.size());
+        int num = WeaponConfig.getRandom().nextInt(keysAsArray.size());
         String key = keysAsArray.get(num);
 
         return copyNormalAttribute(barrelNormalAttributes.get(key));
@@ -197,7 +197,7 @@ public class AttributeHandler {
 
     public UniqueAttribute getUniqueBarrelAttribute() {
         List<String> keysAsArray = new ArrayList<>(barrelUniqueAttributes.keySet());
-        int num = new Random().nextInt(keysAsArray.size());
+        int num = WeaponConfig.getRandom().nextInt(keysAsArray.size());
         String key = keysAsArray.get(num);
 
         return copyUniqueAttribute(barrelUniqueAttributes.get(key));

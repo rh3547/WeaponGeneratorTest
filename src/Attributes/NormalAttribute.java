@@ -3,7 +3,6 @@ package Attributes;
 import Main.WeaponConfig;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Ryan Hochmuth on 8/6/2016.
@@ -19,9 +18,9 @@ public class NormalAttribute extends Attribute {
     public NormalAttribute(String name, String description, int positiveMinValue, int positiveMaxValue, int negativeMinValue, int negativeMaxValue, boolean positiveAllowed, boolean negativeAllowed) {
         super(name, description);
 
-        this.positiveMinValue = positiveMinValue;
         this.positiveMaxValue = positiveMaxValue;
         this.negativeMinValue = negativeMinValue;
+        this.positiveMinValue = positiveMinValue;
         this.negativeMaxValue = negativeMaxValue;
         this.positiveAllowed = positiveAllowed;
         this.negativeAllowed = negativeAllowed;
@@ -46,11 +45,11 @@ public class NormalAttribute extends Attribute {
         int step2 = 0;
 
         if (!isNegative) {
-            base = positiveMinValue + new Random().nextInt((positiveMaxValue + 1) - positiveMinValue);
+            base = positiveMinValue + WeaponConfig.getRandom().nextInt((positiveMaxValue + 1) - positiveMinValue);
             step2 = WeaponConfig.getAttributePositiveStepTwo(base, level);
         }
         else {
-            base = negativeMinValue + new Random().nextInt((negativeMaxValue + 1) - negativeMinValue);
+            base = negativeMinValue + WeaponConfig.getRandom().nextInt((negativeMaxValue + 1) - negativeMinValue);
             step2 = WeaponConfig.getAttributeNegativeStepTwo(base, level);
         }
 

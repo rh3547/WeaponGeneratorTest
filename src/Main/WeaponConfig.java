@@ -26,6 +26,20 @@ public class WeaponConfig {
     public static final int UNIQUE_NAME_POST = 1;
     public static final int UNIQUE_NAME_MID = 2;
     public static final int UNIQUE_NAME_NONE = 3;
+    public static long seed = 1;
+    public static boolean useSeed = false;
+    private static Random random = new Random();
+    private static Random randomSeed = null;
+
+    public static Random getRandom() {
+        if (useSeed) return randomSeed;
+        else return random;
+    }
+
+    public static void updateSeed(long seed) {
+        WeaponConfig.seed = seed;
+        randomSeed = new Random(seed);
+    }
 
     public static int getLevelBracket(int level) {
         int div = level / 10;
@@ -84,11 +98,11 @@ public class WeaponConfig {
                 break;
         }
 
-        return new Random().nextInt((max + 1) - min) + min;
+        return getRandom().nextInt((max + 1) - min) + min;
     }
 
     public static boolean isNormalAttribute() {
-        return new Random().nextInt(100) <= NORMAL_ATTRIBUTE_CHANCE;
+        return getRandom().nextInt(100) <= NORMAL_ATTRIBUTE_CHANCE;
     }
 
     public static int getAttributeBoost(int bracket) {
@@ -121,7 +135,7 @@ public class WeaponConfig {
         else if (attr.isNegativeAllowed() && !attr.isPositiveAllowed())
             return true;
         else {
-            if (new Random().nextInt(100) <= POSITIVE_CHANCE)
+            if (getRandom().nextInt(100) <= POSITIVE_CHANCE)
                 return false;
             else
                 return true;
