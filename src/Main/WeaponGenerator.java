@@ -7,6 +7,7 @@ import Weapons.Weapon;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 import java.util.Random;
 
 /**
@@ -19,8 +20,12 @@ public class WeaponGenerator implements ActionListener {
     private JTextField seedField;
     private JLabel lvlLbl;
     private JTextField lvlField;
-    private JTextArea resultTA;
-    private JScrollPane scrollPane;
+    private JLabel weaponLbl;
+    private JTextArea weaponTA;
+    private JScrollPane weaponScrollPane;
+    private JLabel detailLbl;
+    private JTextArea detailTA;
+    private JScrollPane detailScrollPane;
     private JButton generateBtn;
 
     public WeaponGenerator() {
@@ -61,21 +66,44 @@ public class WeaponGenerator implements ActionListener {
         seedField.setLocation(((windowWidth - 5 - 50) / 2) + 20, 40);
         frame.add(seedField);
 
-        resultTA = new JTextArea();
-        resultTA.setEditable(false);
-        resultTA.setLineWrap(false);
-        resultTA.setMargin(new Insets(10,10,10,10));
-        resultTA.setSize(windowWidth - 5 - 50, windowHeight - 200);
+        weaponLbl = new JLabel();
+        weaponLbl.setText("Weapon");
+        weaponLbl.setSize(windowWidth - 5 - 50 - (windowWidth - 5 - 400), 30);
+        weaponLbl.setLocation(25, 90);
+        frame.add(weaponLbl);
 
-        scrollPane = new JScrollPane(resultTA);
-        scrollPane.setSize(windowWidth - 5 - 50, windowHeight - 200);
-        scrollPane.setLocation(25, 80);
-        frame.add(scrollPane);
+        weaponTA = new JTextArea();
+        weaponTA.setEditable(false);
+        weaponTA.setLineWrap(false);
+        weaponTA.setMargin(new Insets(10,10,10,10));
+        weaponTA.setSize(windowWidth - 5 - 50 - (windowWidth - 5 - 400), windowHeight - 220);
+
+        weaponScrollPane = new JScrollPane(weaponTA);
+        weaponScrollPane.setSize(windowWidth - 5 - 50 - (windowWidth - 5 - 400), windowHeight - 220);
+        weaponScrollPane.setLocation(25, 120);
+        frame.add(weaponScrollPane);
+
+        detailLbl = new JLabel();
+        detailLbl.setText("Details");
+        detailLbl.setSize(windowWidth - 5 - 400, 30);
+        detailLbl.setLocation(25 + 400 - 50, 90);
+        frame.add(detailLbl);
+
+        detailTA = new JTextArea();
+        detailTA.setEditable(false);
+        detailTA.setLineWrap(false);
+        detailTA.setMargin(new Insets(10,10,10,10));
+        detailTA.setSize(windowWidth - 5 - 400, windowHeight - 220);
+
+        detailScrollPane = new JScrollPane(detailTA);
+        detailScrollPane.setSize(windowWidth - 5 - 400, windowHeight - 220);
+        detailScrollPane.setLocation(25 + 400 - 50, 120);
+        frame.add(detailScrollPane);
 
         generateBtn = new JButton();
         generateBtn.setText("Generate Weapon");
         generateBtn.setSize(150, 30);
-        generateBtn.setLocation((windowWidth / 2) - (75), windowHeight - 90);
+        generateBtn.setLocation((windowWidth / 2) - (75), windowHeight - 80);
         generateBtn.addActionListener(this);
         frame.getRootPane().setDefaultButton(generateBtn);
         frame.add(generateBtn);
@@ -123,85 +151,123 @@ public class WeaponGenerator implements ActionListener {
                 long seed = 0;
                 if (seedStr.equals("")) {
                     seed = new Random().nextLong();
-                    WeaponConfig.useSeed = true;
+                    WeaponConfig.setUseSeed(true);
                     WeaponConfig.updateSeed(seed);
                 }
                 else {
                     seed = Long.parseLong(seedStr);
+                    WeaponConfig.setUseSeed(true);
                     WeaponConfig.updateSeed(seed);
-                    WeaponConfig.useSeed = true;
                 }
 
                 Weapon weapon = generateWeapon(lvl);
 
-                String result = "Weapon:\n\n";
-                result += "Seed: " + seed + "\n";
-                result += "Level: " + weapon.getLevel() + "\n";
-                result += weapon.getName() + "\n";
+                /*
+                Build the weapon result string
+                 */
+                DecimalFormat df = new DecimalFormat("###,###");
+                String weaponResult = "";
+                weaponResult += "Level: " + weapon.getLevel() + "\n";
+                weaponResult += weapon.getName() + "\n";
+                weaponResult += "\n";
+                weaponResult += "Stats:\n";
+                weaponResult += "---------------------------------------------------------------------------------\n";
+                weaponResult += "Damage\t\t\t" + df.format(weapon.getStats().getDamage()) + "\n";
+                weaponResult += "---------------------------------------------------------------------------------\n";
+                weaponResult += "Accuracy\t\t\t" + weapon.getStats().getAccuracy() + "\n";
+                weaponResult += "---------------------------------------------------------------------------------\n";
+                weaponResult += "Fire Rate\t\t\t" + weapon.getStats().getFireRate() + "\n";
+                weaponResult += "---------------------------------------------------------------------------------\n";
+                weaponResult += "Magazine Capacity\t\t" + weapon.getStats().getMagCapacity() + "\n";
+                weaponResult += "---------------------------------------------------------------------------------\n";
+                weaponResult += "Reload Speed\t\t\t" + weapon.getStats().getReloadSpeed() + "\n";
+                weaponResult += "---------------------------------------------------------------------------------\n";
+                weaponResult += "Effective Range\t\t\t" + weapon.getStats().getRange() + "\n";
+                weaponResult += "---------------------------------------------------------------------------------\n";
+                weaponResult += "Spread\t\t\t" + weapon.getStats().getSpread() + "\n";
+                weaponResult += "---------------------------------------------------------------------------------\n";
+                weaponResult += "Weight\t\t\t" + weapon.getStats().getWeight() + "\n";
+                weaponResult += "---------------------------------------------------------------------------------\n";
+                weaponResult += "Penetration\t\t\t" + weapon.getStats().getPenetration() + "\n";
+                weaponResult += "---------------------------------------------------------------------------------\n";
+                weaponResult += "Critical Hit Chance\t\t" + weapon.getStats().getCriticalChance() + "\n";
+                weaponResult += "---------------------------------------------------------------------------------\n";
+                weaponResult += "Critical Damage\t\t" + weapon.getStats().getCriticalDamage() + "\n";
+                weaponResult += "---------------------------------------------------------------------------------\n";
 
-                result += "\n";
+                /*
+                Build the detail result string
+                 */
+                String detailResult = "";
+                detailResult += "Seed: " + seed + "\n";
 
-                result += "Body: " + weapon.getBodyPart().getName() + "\n";
+                detailResult += "\n";
+
+                detailResult += "Body: " + weapon.getBodyPart().getName() + "\n";
                 for (Attribute attr : weapon.getBodyPart().getAttributes()) {
                     if (attr instanceof NormalAttribute) {
                         String sign = "+";
                         if (attr.getValue() < 0) sign = "-";
-                        result += "    * " + attr.getName() + ":  " + sign + " " + Math.abs(attr.getValue()) + "% : " + attr.getDescription() + "\n";
+                        detailResult += "    * " + attr.getName() + ":  " + sign + " " + Math.abs(attr.getValue()) + "% : " + attr.getDescription() + "\n";
                     }
                     else {
-                        result += "    * " + attr.getName() + ": " + attr.getDescription() + "\n";
+                        detailResult += "    * " + attr.getName() + ": " + attr.getDescription() + "\n";
                     }
                 }
 
-                result += "\nStock: " + weapon.getStockPart().getName() + "\n";
+                detailResult += "\nStock: " + weapon.getStockPart().getName() + "\n";
                 for (Attribute attr : weapon.getStockPart().getAttributes()) {
                     if (attr instanceof NormalAttribute) {
                         String sign = "+";
                         if (attr.getValue() < 0) sign = "-";
-                        result += "    * " + attr.getName() + ":  " + sign + " " + Math.abs(attr.getValue()) + "% : " + attr.getDescription() + "\n";
+                        detailResult += "    * " + attr.getName() + ":  " + sign + " " + Math.abs(attr.getValue()) + "% : " + attr.getDescription() + "\n";
                     }
                     else {
-                        result += "    * " + attr.getName() + ": " + attr.getDescription() + "\n";
+                        detailResult += "    * " + attr.getName() + ": " + attr.getDescription() + "\n";
                     }
                 }
 
-                result += "\nSight: " + weapon.getSightPart().getName() + "\n";
+                detailResult += "\nSight: " + weapon.getSightPart().getName() + "\n";
                 for (Attribute attr : weapon.getSightPart().getAttributes()) {
                     if (attr instanceof NormalAttribute) {
                         String sign = "+";
                         if (attr.getValue() < 0) sign = "-";
-                        result += "    * " + attr.getName() + ":  " + sign + " " + Math.abs(attr.getValue()) + "% : " + attr.getDescription() + "\n";
+                        detailResult += "    * " + attr.getName() + ":  " + sign + " " + Math.abs(attr.getValue()) + "% : " + attr.getDescription() + "\n";
                     }
                     else {
-                        result += "    * " + attr.getName() + ": " + attr.getDescription() + "\n";
+                        detailResult += "    * " + attr.getName() + ": " + attr.getDescription() + "\n";
                     }
                 }
 
-                result += "\nMagazine: " + weapon.getMagazinePart().getName() + "\n";
+                detailResult += "\nMagazine: " + weapon.getMagazinePart().getName() + "\n";
                 for (Attribute attr : weapon.getMagazinePart().getAttributes()) {
                     if (attr instanceof NormalAttribute) {
                         String sign = "+";
                         if (attr.getValue() < 0) sign = "-";
-                        result += "    * " + attr.getName() + ":  " + sign + " " + Math.abs(attr.getValue()) + "% : " + attr.getDescription() + "\n";
+                        detailResult += "    * " + attr.getName() + ":  " + sign + " " + Math.abs(attr.getValue()) + "% : " + attr.getDescription() + "\n";
                     }
                     else {
-                        result += "    * " + attr.getName() + ": " + attr.getDescription() + "\n";
+                        detailResult += "    * " + attr.getName() + ": " + attr.getDescription() + "\n";
                     }
                 }
 
-                result += "\nBarrel: " + weapon.getBarrelPart().getName() + "\n";
+                detailResult += "\nBarrel: " + weapon.getBarrelPart().getName() + "\n";
                 for (Attribute attr : weapon.getBarrelPart().getAttributes()) {
                     if (attr instanceof NormalAttribute) {
                         String sign = "+";
                         if (attr.getValue() < 0) sign = "-";
-                        result += "    * " + attr.getName() + ":  " + sign + " " + Math.abs(attr.getValue()) + "% : " + attr.getDescription() + "\n";
+                        detailResult += "    * " + attr.getName() + ":  " + sign + " " + Math.abs(attr.getValue()) + "% : " + attr.getDescription() + "\n";
                     }
                     else {
-                        result += "    * " + attr.getName() + ": " + attr.getDescription() + "\n";
+                        detailResult += "    * " + attr.getName() + ": " + attr.getDescription() + "\n";
                     }
                 }
 
-                resultTA.setText(result);
+                /*
+                Add result strings to text areas
+                 */
+                weaponTA.setText(weaponResult);
+                detailTA.setText(detailResult);
             }
         }
     }

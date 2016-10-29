@@ -22,7 +22,7 @@ public class Weapon {
     private SightPart sightPart;
     private MagazinePart magazinePart;
     private BarrelPart barrelPart;
-
+    private WeaponStats stats = new WeaponStats();
 
     public Weapon(int level) {
         this.level = generateWeaponLevel(level);
@@ -100,7 +100,9 @@ public class Weapon {
     }
 
     private void rollStats() {
+        stats = WeaponConfig.rollBaseStats(this);
 
+        
     }
 
     private void determineNames() {
@@ -248,5 +250,9 @@ public class Weapon {
 
     public BarrelPart getBarrelPart() {
         return barrelPart;
+    }
+
+    public WeaponStats getStats() {
+        return stats;
     }
 }

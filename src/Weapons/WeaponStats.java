@@ -98,6 +98,10 @@ public class WeaponStats {
         stats.replace("reloadSpeed", value);
     }
 
+    public int getCriticalChance() {
+        return stats.get("criticalChance");
+    }
+
     public void setCriticalChance(int value) {
         stats.replace("criticalChance", value);
     }

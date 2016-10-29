@@ -1,9 +1,13 @@
 package Main;
 
 import Attributes.NormalAttribute;
+import Weapons.Weapon;
+import Weapons.WeaponStats;
 
 import java.util.Map;
 import java.util.Random;
+
+import static Weapons.WeaponType.*;
 
 /**
  * Created by Ryan Hochmuth on 8/7/2016.
@@ -16,9 +20,6 @@ public class WeaponConfig {
     public static final int NUM_SIGHT_PARTS = 18;
     public static final int NUM_MAGAZINE_PARTS = 18;
     public static final int NUM_BARREL_PARTS = 18;
-    public static final int NORMAL_ATTRIBUTE_CHANCE = 90;
-    public static final int ATTRIBUTE_VALUE_MODIFIER = 0;
-    public static final int POSITIVE_CHANCE = 65;
     public static final int RARITY_COMMON = 0;
     public static final int RARITY_UNCOMMON = 50;
     public static final int RARITY_RARE = 30;
@@ -26,8 +27,22 @@ public class WeaponConfig {
     public static final int UNIQUE_NAME_POST = 1;
     public static final int UNIQUE_NAME_MID = 2;
     public static final int UNIQUE_NAME_NONE = 3;
-    public static long seed = 1;
-    public static boolean useSeed = false;
+
+    private static final int NORMAL_ATTRIBUTE_CHANCE = 90;
+    private static final int ATTRIBUTE_VALUE_MODIFIER = 0;
+    private static final int POSITIVE_CHANCE = 65;
+    private static final int HEALTH_BASE = 200;
+    private static final int HEALTH_GAIN = 25;
+    private static final int SNIPER_HITS = 2;
+    private static final int SHOTGUN_HITS = 2;
+    private static final int AR_HITS = 10;
+    private static final int LMG_HITS = 10;
+    private static final int SMG_HITS = 16;
+    private static final int PISTOL_HITS = 16;
+
+    // Seed Fields
+    private static long seed = 1;
+    private static boolean useSeed = false;
     private static Random random = new Random();
     private static Random randomSeed = null;
 
@@ -39,6 +54,10 @@ public class WeaponConfig {
     public static void updateSeed(long seed) {
         WeaponConfig.seed = seed;
         randomSeed = new Random(seed);
+    }
+
+    public static void setUseSeed(boolean value) {
+        useSeed = value;
     }
 
     public static int getLevelBracket(int level) {
@@ -142,7 +161,38 @@ public class WeaponConfig {
         }
     }
 
-    public static Map<String, Integer> rollBaseStats(Map<String, Integer> stats) {
-        return null;
+    public static WeaponStats rollBaseStats(Weapon weapon) {
+
+        WeaponStats baseStats = weapon.getStats();
+        int level = weapon.getLevel();
+        int baseEnemyHealth = (int)((HEALTH_BASE + (HEALTH_GAIN * (level - 1))) + (Math.pow(level, 3)) - 1);
+
+        switch(weapon.getType()) {
+            case Pistol:
+                baseStats.setDamage(baseEnemyHealth / PISTOL_HITS);
+                break;
+
+            case SMG:
+                baseStats.setDamage(baseEnemyHealth / SMG_HITS);
+                break;
+
+            case Shotgun:
+                baseStats.setDamage(baseEnemyHealth / SHOTGUN_HITS);
+                break;
+
+            case AssaultRifle:
+                baseStats.setDamage(baseEnemyHealth / AR_HITS);
+                break;
+
+            case LMG:
+                baseStats.setDamage(baseEnemyHealth / LMG_HITS);
+                break;
+
+            case Sniper:
+                baseStats.setDamage(baseEnemyHealth / SNIPER_HITS);
+                break;
+        }
+
+        return baseStats;
     }
 }
