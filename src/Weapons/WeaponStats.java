@@ -42,7 +42,87 @@ public class WeaponStats {
         stats.put("penetration", penetration);
     }
 
-    public void setDamage(int damage) {
-        stats.replace("damage", damage);
+    public int getDamage() {
+        return stats.get("damage");
+    }
+
+    public void setDamage(int value) {
+        stats.replace("damage", value);
+    }
+
+    public int getAccuracy() {
+        return stats.get("accuracy");
+    }
+
+    public void setAccuracy(int value) {
+        stats.replace("accuracy", value);
+    }
+
+    public int getFireRate() {
+        return stats.get("fireRate");
+    }
+
+    public void setFireRate(int value) {
+        stats.replace("fireRate", value);
+    }
+
+    public int getRange() {
+        return stats.get("range");
+    }
+
+    public void setRange(int value) {
+        stats.replace("range", value);
+    }
+
+    public int getSpread() {
+        return stats.get("spread");
+    }
+
+    public void setSpread(int value) {
+        stats.replace("spread", value);
+    }
+
+    public int getMagCapacity() {
+        return stats.get("magCapacity");
+    }
+
+    public void setMagCapacity(int value) {
+        stats.replace("magCapacity", value);
+    }
+
+    public int getReloadSpeed() {
+        return stats.get("reloadSpeed");
+    }
+
+    public void setReloadSpeed(int value) {
+        stats.replace("reloadSpeed", value);
+    }
+
+    public void setCriticalChance(int value) {
+        stats.replace("criticalChance", value);
+    }
+
+    public int getCriticalDamage() {
+        return stats.get("criticalDamage");
+    }
+
+    public void setCriticalDamage(int value) {
+        stats.replace("criticalDamage", value);
+    }
+
+    public int getWeight() {
+        return stats.get("weight");
+    }
+
+    public void setWeight(int value) {
+        stats.replace("weight", value);
+    }
+
+    public int getPenetration() {
+        return stats.get("penetration");
+    }
+
+    public void setPenetration(int value) {
+        stats.replace("penetration", value);
     }
 }
