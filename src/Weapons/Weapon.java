@@ -99,8 +99,11 @@ public class Weapon {
         rollStats();
     }
 
-    // Assault Rifle (30): -3364550138670294764
     // Sniper (30): 4756214015878680209
+    // LMG (30): -752195636100200995
+    // Assault Rifle (30): -3364550138670294764
+    // SMG (30: -658748952693826620
+    // Pistol (30): 1257008339778747470
     private void rollStats() {
         stats = WeaponConfig.rollBaseStats(this);
 
@@ -109,6 +112,8 @@ public class Weapon {
         addPartAttributeStatBoosts(sightPart.getAttributes());
         addPartAttributeStatBoosts(magazinePart.getAttributes());
         addPartAttributeStatBoosts(barrelPart.getAttributes());
+
+        calculateAttributeStatBoosts();
 
         calculatePartCriticalDamageBoost(bodyPart.getAttributes());
         calculatePartCriticalDamageBoost(stockPart.getAttributes());
@@ -122,48 +127,92 @@ public class Weapon {
             switch(attribute.getName()) {
 
                 case "Damage":
-                    stats.setDamage((int)(stats.getDamage() + (stats.getDamage() * (attribute.getValue() / 100))));
+                    stats.addDamageBoost(attribute.getValue());
                     break;
 
                 case "Accuracy":
-                    stats.setAccuracy((int)(stats.getAccuracy() + (stats.getAccuracy() * (attribute.getValue() / 100))));
+                    stats.addAccuracyBoost(attribute.getValue());
                     break;
 
                 case "Fire Rate":
+                    stats.addFireRateBoost(attribute.getValue());
                     break;
 
                 case "Magazine Capacity":
+                    stats.addMagCapacityBoost(attribute.getValue());
                     break;
 
                 case "Reload Speed":
+                    stats.addReloadSpeedBoost(attribute.getValue());
                     break;
 
                 case "Range":
+                    stats.addRangeBoost(attribute.getValue());
                     break;
 
                 case "Spread":
+                    stats.addSpreadBoost(attribute.getValue());
                     break;
 
                 case "Weight":
+                    stats.addWeightBoost(attribute.getValue());
                     break;
 
                 case "Penetration":
+                    stats.addPenetrationBoost(attribute.getValue());
                     break;
 
                 case "Critical Chance":
+                    stats.addCriticalChanceBoost(attribute.getValue());
+                    break;
+
+                case "Critical Damage":
+                    stats.addCriticalDamageBoost(attribute.getValue());
                     break;
             }
         }
     }
 
-    private void calculatePartCriticalDamageBoost(List<Attribute> attributes) {
-        for (Attribute attribute : attributes) {
-            switch(attribute.getName()) {
+    private void calculateAttributeStatBoosts() {
+        stats.setDamage((int)Math.round(calculateSingleAttributeStatBoost(stats.getDamage(), stats.getDamageBoost(), false)));
 
-                case "Critical Damage":
-                    break;
-            }
+        int accuracy = (int)Math.round(calculateSingleAttributeStatBoost(stats.getAccuracy(), stats.getAccuracyBoost(), false));
+        stats.setAccuracy(accuracy > 100 ? 100 : accuracy);
+
+        stats.setFireRate((int)Math.round(calculateSingleAttributeStatBoost(stats.getFireRate(), stats.getFireRateBoost(), false)));
+        stats.setMagCapacity((int)Math.round(calculateSingleAttributeStatBoost(stats.getMagCapacity(), stats.getMagCapacityBoost(), false)));
+        stats.setReloadSpeed(calculateSingleAttributeStatBoost(stats.getReloadSpeed(), stats.getReloadSpeedBoost(), true));
+        stats.setRange((int)Math.round(calculateSingleAttributeStatBoost(stats.getRange(), stats.getRangeBoost(), false)));
+        stats.setSpread((int)Math.round(calculateSingleAttributeStatBoost(stats.getSpread(), stats.getSpreadBoost(), false)));
+        stats.setWeight(calculateSingleAttributeStatBoost(stats.getWeight(), stats.getWeightBoost(), false));
+
+        int penetration = (int)Math.round(calculateSingleAttributeStatBoost(stats.getPenetration(), stats.getPenetrationBoost(), false));
+        stats.setPenetration(penetration);
+
+        int critChance = (int)Math.ceil(calculateSingleAttributeStatBoost(stats.getCriticalChance(), stats.getCriticalChanceBoost(), false));
+        stats.setCriticalChance(critChance > WeaponConfig.MAX_CRIT_CHANCE ? WeaponConfig.MAX_CRIT_CHANCE : critChance);
+
+        int critDamage = (int)Math.round(calculateSingleAttributeStatBoost(stats.getCriticalDamage(), stats.getCriticalDamageBoost(), false));
+        stats.setCriticalDamage(critDamage);
+    }
+
+    private double calculateSingleAttributeStatBoost(double currentValue, double boost, boolean negate) {
+        double newValue;
+
+        if (negate) {
+            newValue = currentValue - (currentValue * (boost / 100));
         }
+        else {
+            newValue = currentValue + (currentValue * (boost / 100));
+        }
+
+        if (newValue < 0) newValue = 0;
+
+        return newValue;
+    }
+
+    private void calculatePartCriticalDamageBoost(List<Attribute> attributes) {
+
     }
 
     private void determineNames() {

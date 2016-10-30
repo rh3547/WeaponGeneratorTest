@@ -166,6 +166,7 @@ public class WeaponGenerator implements ActionListener {
                 Build the weapon result string
                  */
                 DecimalFormat df = new DecimalFormat("###,###");
+                DecimalFormat dfDec = new DecimalFormat("#.##");
                 String weaponResult = "";
                 weaponResult += "Level: " + weapon.getLevel() + "\n";
                 weaponResult += weapon.getName() + "\n";
@@ -180,19 +181,19 @@ public class WeaponGenerator implements ActionListener {
                 weaponResult += "---------------------------------------------------------------------------------\n";
                 weaponResult += "Magazine Capacity\t\t" + df.format(weapon.getStats().getMagCapacity()) + "\n";
                 weaponResult += "---------------------------------------------------------------------------------\n";
-                weaponResult += "Reload Speed\t\t\t" + weapon.getStats().getReloadSpeed() + " sec.\n";
+                weaponResult += "Reload Speed\t\t\t" + dfDec.format(weapon.getStats().getReloadSpeed()) + " sec.\n";
                 weaponResult += "---------------------------------------------------------------------------------\n";
                 weaponResult += "Effective Range\t\t\t" + df.format(weapon.getStats().getRange()) + "\n";
                 weaponResult += "---------------------------------------------------------------------------------\n";
                 weaponResult += "Spread\t\t\t" + df.format(weapon.getStats().getSpread()) + "\n";
                 weaponResult += "---------------------------------------------------------------------------------\n";
-                weaponResult += "Weight\t\t\t" + df.format(weapon.getStats().getWeight()) + "\n";
+                weaponResult += "Weight\t\t\t" + dfDec.format(weapon.getStats().getWeight()) + " lbs.\n";
                 weaponResult += "---------------------------------------------------------------------------------\n";
-                weaponResult += "Penetration\t\t\t" + df.format(weapon.getStats().getPenetration()) + "\n";
+                weaponResult += "Penetration\t\t\t" + df.format(weapon.getStats().getPenetration()) + "%\n";
                 weaponResult += "---------------------------------------------------------------------------------\n";
-                weaponResult += "Critical Hit Chance\t\t" + df.format(weapon.getStats().getCriticalChance()) + "\n";
+                weaponResult += "Critical Hit Chance\t\t" + df.format(weapon.getStats().getCriticalChance()) + "%\n";
                 weaponResult += "---------------------------------------------------------------------------------\n";
-                weaponResult += "Critical Damage\t\t" + df.format(weapon.getStats().getCriticalDamage()) + "\n";
+                weaponResult += "Critical Damage\t\t" + df.format(weapon.getStats().getCriticalDamage()) + "%\n";
                 weaponResult += "---------------------------------------------------------------------------------\n";
 
                 /*

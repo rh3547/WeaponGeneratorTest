@@ -33,7 +33,7 @@ public class AttributeHandler {
         bodyNormalAttributes.put("damage", new NormalAttribute("Damage", "Determines the amount of damage your shots do", 3, 10, 5, 50, true, true));
         bodyNormalAttributes.put("criticalDamage", new NormalAttribute("Critical Damage", "Determines the damage of a critical hit", 3, 10, 3, 25, true, true));
         bodyNormalAttributes.put("fireRate", new NormalAttribute("Fire Rate", "Determines the rate at which the weapon fires", 3, 10, 10, 60, true, true));
-        bodyNormalAttributes.put("weight", new NormalAttribute("Weight", "Determines the weight of the weapon, affecting the speed of the player", 3,15, 10, 25, true, true));
+        bodyNormalAttributes.put("weight", new NormalAttribute("Weight", "Determines the weight of the weapon, affecting the speed of the player", -3, -15, -10, -25, true, true));
 
         bodyUniqueAttributes.put("accelerated", new UniqueAttribute("Accelerated", "The first half of your magazine shoots x% faster", WeaponConfig.RARITY_UNCOMMON, WeaponConfig.UNIQUE_NAME_PRE));
         bodyUniqueAttributes.put("wildcard", new UniqueAttribute("Wildcard", "A stat multiplier on the body is doubled, but another random stat is halved", WeaponConfig.RARITY_RARE, WeaponConfig.UNIQUE_NAME_NONE));
@@ -77,7 +77,8 @@ public class AttributeHandler {
         sightNormalAttributes.put("criticalChance", new NormalAttribute("Critical Chance", "Determines the chance that your shot will deal critical damage", 1, 5, 3, 15, true, false));
         sightNormalAttributes.put("accuracy", new NormalAttribute("Accuracy", "Determines the likeliness of your shots hitting where you’re aiming", 5, 15, 10, 30, true, true));
 
-        sightUniqueAttributes.put("penetrating", new UniqueAttribute("Penetration", "Shots fired with this weapon have x% chance to penetrate what they hit", WeaponConfig.RARITY_COMMON, WeaponConfig.UNIQUE_NAME_POST));
+        // Removed penetrating as a unique attribute.  All weapons can penetrate for now
+        // sightUniqueAttributes.put("penetrating", new UniqueAttribute("Penetration", "Shots fired with this weapon have x% chance to penetrate what they hit", WeaponConfig.RARITY_COMMON, WeaponConfig.UNIQUE_NAME_POST));
         sightUniqueAttributes.put("oneShot", new UniqueAttribute("One-Shot", "The first shot after a fresh reload has 100% accuracy", WeaponConfig.RARITY_COMMON, WeaponConfig.UNIQUE_NAME_PRE));
         sightUniqueAttributes.put("analytical", new UniqueAttribute("Analytical", "Waiting x seconds after taking a shot with this weapon will cause the next shot to have critical chance increased by x%", WeaponConfig.RARITY_UNCOMMON, WeaponConfig.UNIQUE_NAME_PRE));
         sightUniqueAttributes.put("tracking", new UniqueAttribute("Tracking", "x% chance for your shot to lock onto an enemy and home to them", WeaponConfig.RARITY_RARE, WeaponConfig.UNIQUE_NAME_PRE));
@@ -103,7 +104,7 @@ public class AttributeHandler {
         magazineUniqueAttributes.put("discarding", new UniqueAttribute("Discarding", "When reloading this weapon the character throws the magazine forwards.  When it lands it explodes causing area damage equal to normal weapon damage plus an additional percentage of normal weapon damage based on the percent of ammo remaining in the magazine when it was thrown", WeaponConfig.RARITY_RARE, WeaponConfig.UNIQUE_NAME_PRE));
 
         // Baked, put in here for now
-        magazineUniqueAttributes.put("prismatic", new UniqueAttribute("Prismatic", "This weapon fires lasers instead of bullets.  Also receives Penetrating: Shots fired with this weapon have x% chance to penetrate what they hit", WeaponConfig.RARITY_RARE, WeaponConfig.UNIQUE_NAME_PRE));
+        magazineUniqueAttributes.put("prismatic", new UniqueAttribute("Prismatic", "This weapon fires lasers instead of bullets.  Also receives a penetration boost of 20%", WeaponConfig.RARITY_RARE, WeaponConfig.UNIQUE_NAME_PRE));
     }
 
     private void addBarrelAttributes() {

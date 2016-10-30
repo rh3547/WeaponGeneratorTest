@@ -45,12 +45,26 @@ public class NormalAttribute extends Attribute {
         int step2 = 0;
 
         if (!isNegative) {
-            base = positiveMinValue + WeaponConfig.getRandom().nextInt((positiveMaxValue + 1) - positiveMinValue);
-            step2 = WeaponConfig.getAttributePositiveStepTwo(base, level);
+            if (positiveMaxValue > 0 && positiveMinValue > 0) {
+                base = positiveMinValue + WeaponConfig.getRandom().nextInt((positiveMaxValue + 1) - positiveMinValue);
+                step2 = WeaponConfig.getAttributePositiveStepTwo(this.getName(), base, level);
+            }
+            else if (positiveMaxValue < 0 && positiveMinValue < 0) {
+                base = positiveMinValue + WeaponConfig.getRandom().nextInt((Math.abs(positiveMaxValue) + 1) - Math.abs(positiveMinValue));
+                step2 = WeaponConfig.getAttributePositiveStepTwo(this.getName(), base, level);
+                step2 = step2 * -1;
+            }
         }
         else {
-            base = negativeMinValue + WeaponConfig.getRandom().nextInt((negativeMaxValue + 1) - negativeMinValue);
-            step2 = WeaponConfig.getAttributeNegativeStepTwo(base, level);
+            if (negativeMinValue > 0 && negativeMaxValue > 0) {
+                base = negativeMinValue + WeaponConfig.getRandom().nextInt((negativeMaxValue + 1) - negativeMinValue);
+                step2 = WeaponConfig.getAttributeNegativeStepTwo(base, level);
+            }
+            else if (negativeMinValue < 0 && negativeMaxValue < 0) {
+                base = negativeMinValue + WeaponConfig.getRandom().nextInt((Math.abs(negativeMaxValue) + 1) - Math.abs(negativeMinValue));
+                step2 = WeaponConfig.getAttributeNegativeStepTwo(base, level);
+                step2 = step2 * -1;
+            }
         }
 
         int bracket = WeaponConfig.getLevelBracket(level);
