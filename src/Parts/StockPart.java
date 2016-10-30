@@ -19,8 +19,6 @@ public class StockPart extends Part {
         int bracket = WeaponConfig.getLevelBracket(getLevel());
         int numAttributes = WeaponConfig.getNumAttributes(bracket);
 
-        System.out.println("Number of Stock Attributes: " + numAttributes);
-
         for (int x = 0; x < numAttributes; x++) {
             Attribute attr = null;
             boolean chosen = false;

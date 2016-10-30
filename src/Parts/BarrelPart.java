@@ -19,8 +19,6 @@ public class BarrelPart extends Part {
         int bracket = WeaponConfig.getLevelBracket(getLevel());
         int numAttributes = WeaponConfig.getNumAttributes(bracket);
 
-        System.out.println("Number of Barrel Attributes: " + numAttributes);
-
         for (int x = 0; x < numAttributes; x++) {
             Attribute attr = null;
             boolean chosen = false;

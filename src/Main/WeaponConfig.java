@@ -33,16 +33,40 @@ public class WeaponConfig {
     private static final int POSITIVE_CHANCE = 65;
     private static final int HEALTH_BASE = 200;
     private static final int HEALTH_GAIN = 25;
+
     private static final int SNIPER_HITS = 2;
+    private static final double SNIPER_ACCURACY_BASE = .9;
+    private static final double SNIPER_ACCURACY_GAIN = .0005;
+    private static final int SNIPER_ACCURACY_DELTA = 2;
+
     private static final int SHOTGUN_HITS = 2;
+    private static final double SHOTGUN_ACCURACY_BASE = .45;
+    private static final double SHOTGUN_ACCURACY_GAIN = .001;
+    private static final int SHOTGUN_ACCURACY_DELTA = 5;
+
     private static final int AR_HITS = 10;
+    private static final double AR_ACCURACY_BASE = .8;
+    private static final double AR_ACCURACY_GAIN = .0005;
+    private static final int AR_ACCURACY_DELTA = 3;
+
     private static final int LMG_HITS = 10;
+    private static final double LMG_ACCURACY_BASE = .65;
+    private static final double LMG_ACCURACY_GAIN = .001;
+    private static final int LMG_ACCURACY_DELTA = 3;
+
     private static final int SMG_HITS = 16;
+    private static final double SMG_ACCURACY_BASE = .7;
+    private static final double SMG_ACCURACY_GAIN = .001;
+    private static final int SMG_ACCURACY_DELTA = 1;
+
     private static final int PISTOL_HITS = 16;
+    private static final double PISTOL_ACCURACY_BASE = .8;
+    private static final double PISTOL_ACCURACY_GAIN = .0005;
+    private static final int PISTOL_ACCURACY_DELTA = 3;
 
     // Seed Fields
     private static long seed = 1;
-    private static boolean useSeed = false;
+    private static boolean useSeed = true;
     private static Random random = new Random();
     private static Random randomSeed = null;
 
@@ -165,33 +189,61 @@ public class WeaponConfig {
 
         WeaponStats baseStats = weapon.getStats();
         int level = weapon.getLevel();
-        int baseEnemyHealth = (int)((HEALTH_BASE + (HEALTH_GAIN * (level - 1))) + (Math.pow(level, 3)) - 1);
+        double baseEnemyHealth = (HEALTH_BASE + (HEALTH_GAIN * (level - 1))) + (Math.pow(level, 3)) - 1;
+
+        double damage = 0;
+        double accuracy = 0;
+        double fireRate = 0;
+        double magCapacity = 0;
+        double reloadSpeed = 0;
+        double range = 0;
 
         switch(weapon.getType()) {
             case Pistol:
-                baseStats.setDamage(baseEnemyHealth / PISTOL_HITS);
+                damage = (int)Math.round(baseEnemyHealth / PISTOL_HITS);
+                accuracy = PISTOL_ACCURACY_BASE + ((level - 1) * PISTOL_ACCURACY_GAIN);
+                accuracy = accuracy + ((getRandom().nextInt(2 * PISTOL_ACCURACY_DELTA) - PISTOL_ACCURACY_DELTA) / 100.0);
+                accuracy = (int)Math.round((accuracy * 100));
                 break;
 
             case SMG:
-                baseStats.setDamage(baseEnemyHealth / SMG_HITS);
+                damage = (int)Math.round(baseEnemyHealth / SMG_HITS);
+                accuracy = SMG_ACCURACY_BASE + ((level - 1) * SMG_ACCURACY_GAIN);
+                accuracy = accuracy + ((getRandom().nextInt(2 * SMG_ACCURACY_DELTA) - SMG_ACCURACY_DELTA) / 100.0);
+                accuracy = (int)Math.round((accuracy * 100));
                 break;
 
             case Shotgun:
-                baseStats.setDamage(baseEnemyHealth / SHOTGUN_HITS);
+                damage = (int)Math.round(baseEnemyHealth / SHOTGUN_HITS);
+                accuracy = SHOTGUN_ACCURACY_BASE + ((level - 1) * SHOTGUN_ACCURACY_GAIN);
+                accuracy = accuracy + ((getRandom().nextInt(2 * SHOTGUN_ACCURACY_DELTA) - SHOTGUN_ACCURACY_DELTA) / 100.0);
+                accuracy = (int)Math.round((accuracy * 100));
                 break;
 
             case AssaultRifle:
-                baseStats.setDamage(baseEnemyHealth / AR_HITS);
+                damage = (int)Math.round(baseEnemyHealth / AR_HITS);
+                accuracy = AR_ACCURACY_BASE + ((level - 1) * AR_ACCURACY_GAIN);
+                accuracy = accuracy + ((getRandom().nextInt(2 * AR_ACCURACY_DELTA) - AR_ACCURACY_DELTA) / 100.0);
+                accuracy = (int)Math.round((accuracy * 100));
                 break;
 
             case LMG:
-                baseStats.setDamage(baseEnemyHealth / LMG_HITS);
+                damage = (int)Math.round(baseEnemyHealth / LMG_HITS);
+                accuracy = LMG_ACCURACY_BASE + ((level - 1) * LMG_ACCURACY_GAIN);
+                accuracy = accuracy + ((getRandom().nextInt(2 * LMG_ACCURACY_DELTA) - LMG_ACCURACY_DELTA) / 100.0);
+                accuracy = (int)Math.round((accuracy * 100));
                 break;
 
             case Sniper:
-                baseStats.setDamage(baseEnemyHealth / SNIPER_HITS);
+                damage = (int)Math.round(baseEnemyHealth / SNIPER_HITS);
+                accuracy = SNIPER_ACCURACY_BASE + ((level - 1) * SNIPER_ACCURACY_GAIN);
+                accuracy = accuracy + ((getRandom().nextInt(2 * SNIPER_ACCURACY_DELTA) - SNIPER_ACCURACY_DELTA) / 100.0);
+                accuracy = (int)Math.round((accuracy * 100));
                 break;
         }
+
+        baseStats.setDamage(damage);
+        baseStats.setAccuracy(accuracy);
 
         return baseStats;
     }

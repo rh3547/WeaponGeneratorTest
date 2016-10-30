@@ -8,26 +8,26 @@ import java.util.Map;
  */
 public class WeaponStats {
 
-    private Map<String, Integer> stats;
+    private Map<String, Double> stats;
 
     public WeaponStats() {
         stats = new HashMap<>();
-        stats.put("damage", 0);
-        stats.put("accuracy", 0);
-        stats.put("fireRate", 0);
-        stats.put("range", 0);
-        stats.put("spread", 0);
-        stats.put("magCapacity", 0);
-        stats.put("reloadSpeed", 0);
-        stats.put("criticalChance", 0);
-        stats.put("criticalDamage", 0);
-        stats.put("weight", 0);
-        stats.put("penetration", 0);
+        stats.put("damage", 0.0);
+        stats.put("accuracy", 0.0);
+        stats.put("fireRate", 0.0);
+        stats.put("range", 0.0);
+        stats.put("spread", 0.0);
+        stats.put("magCapacity", 0.0);
+        stats.put("reloadSpeed", 0.0);
+        stats.put("criticalChance", 0.0);
+        stats.put("criticalDamage", 0.0);
+        stats.put("weight", 0.0);
+        stats.put("penetration", 0.0);
     }
 
-    public WeaponStats(int damage, int accuracy, int fireRate, int range, int spread,
-                       int magCapacity, int reloadSpeed, int criticalChance,
-                       int criticalDamage, int weight, int penetration) {
+    public WeaponStats(double damage, double accuracy, double fireRate, double range, double spread,
+                       double magCapacity, double reloadSpeed, double criticalChance,
+                       double criticalDamage, double weight, double penetration) {
         stats = new HashMap<>();
         stats.put("damage", damage);
         stats.put("accuracy", accuracy);
@@ -42,91 +42,91 @@ public class WeaponStats {
         stats.put("penetration", penetration);
     }
 
-    public int getDamage() {
+    public double getDamage() {
         return stats.get("damage");
     }
 
-    public void setDamage(int value) {
+    public void setDamage(double value) {
         stats.replace("damage", value);
     }
 
-    public int getAccuracy() {
+    public double getAccuracy() {
         return stats.get("accuracy");
     }
 
-    public void setAccuracy(int value) {
+    public void setAccuracy(double value) {
         stats.replace("accuracy", value);
     }
 
-    public int getFireRate() {
+    public double getFireRate() {
         return stats.get("fireRate");
     }
 
-    public void setFireRate(int value) {
+    public void setFireRate(double value) {
         stats.replace("fireRate", value);
     }
 
-    public int getRange() {
+    public double getRange() {
         return stats.get("range");
     }
 
-    public void setRange(int value) {
+    public void setRange(double value) {
         stats.replace("range", value);
     }
 
-    public int getSpread() {
+    public double getSpread() {
         return stats.get("spread");
     }
 
-    public void setSpread(int value) {
+    public void setSpread(double value) {
         stats.replace("spread", value);
     }
 
-    public int getMagCapacity() {
+    public double getMagCapacity() {
         return stats.get("magCapacity");
     }
 
-    public void setMagCapacity(int value) {
+    public void setMagCapacity(double value) {
         stats.replace("magCapacity", value);
     }
 
-    public int getReloadSpeed() {
+    public double getReloadSpeed() {
         return stats.get("reloadSpeed");
     }
 
-    public void setReloadSpeed(int value) {
+    public void setReloadSpeed(double value) {
         stats.replace("reloadSpeed", value);
     }
 
-    public int getCriticalChance() {
+    public double getCriticalChance() {
         return stats.get("criticalChance");
     }
 
-    public void setCriticalChance(int value) {
+    public void setCriticalChance(double value) {
         stats.replace("criticalChance", value);
     }
 
-    public int getCriticalDamage() {
+    public double getCriticalDamage() {
         return stats.get("criticalDamage");
     }
 
-    public void setCriticalDamage(int value) {
+    public void setCriticalDamage(double value) {
         stats.replace("criticalDamage", value);
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return stats.get("weight");
     }
 
-    public void setWeight(int value) {
+    public void setWeight(double value) {
         stats.replace("weight", value);
     }
 
-    public int getPenetration() {
+    public double getPenetration() {
         return stats.get("penetration");
     }
 
-    public void setPenetration(int value) {
+    public void setPenetration(double value) {
         stats.replace("penetration", value);
     }
 }

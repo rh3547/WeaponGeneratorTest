@@ -99,10 +99,71 @@ public class Weapon {
         rollStats();
     }
 
+    // Assault Rifle (30): -3364550138670294764
+    // Sniper (30): 4756214015878680209
     private void rollStats() {
         stats = WeaponConfig.rollBaseStats(this);
 
-        
+        addPartAttributeStatBoosts(bodyPart.getAttributes());
+        addPartAttributeStatBoosts(stockPart.getAttributes());
+        addPartAttributeStatBoosts(sightPart.getAttributes());
+        addPartAttributeStatBoosts(magazinePart.getAttributes());
+        addPartAttributeStatBoosts(barrelPart.getAttributes());
+
+        calculatePartCriticalDamageBoost(bodyPart.getAttributes());
+        calculatePartCriticalDamageBoost(stockPart.getAttributes());
+        calculatePartCriticalDamageBoost(sightPart.getAttributes());
+        calculatePartCriticalDamageBoost(magazinePart.getAttributes());
+        calculatePartCriticalDamageBoost(barrelPart.getAttributes());
+    }
+
+    private void addPartAttributeStatBoosts(List<Attribute> attributes) {
+        for (Attribute attribute : attributes) {
+            switch(attribute.getName()) {
+
+                case "Damage":
+                    stats.setDamage((int)(stats.getDamage() + (stats.getDamage() * (attribute.getValue() / 100))));
+                    break;
+
+                case "Accuracy":
+                    stats.setAccuracy((int)(stats.getAccuracy() + (stats.getAccuracy() * (attribute.getValue() / 100))));
+                    break;
+
+                case "Fire Rate":
+                    break;
+
+                case "Magazine Capacity":
+                    break;
+
+                case "Reload Speed":
+                    break;
+
+                case "Range":
+                    break;
+
+                case "Spread":
+                    break;
+
+                case "Weight":
+                    break;
+
+                case "Penetration":
+                    break;
+
+                case "Critical Chance":
+                    break;
+            }
+        }
+    }
+
+    private void calculatePartCriticalDamageBoost(List<Attribute> attributes) {
+        for (Attribute attribute : attributes) {
+            switch(attribute.getName()) {
+
+                case "Critical Damage":
+                    break;
+            }
+        }
     }
 
     private void determineNames() {
