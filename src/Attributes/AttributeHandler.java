@@ -104,7 +104,7 @@ public class AttributeHandler {
         magazineUniqueAttributes.put("discarding", new UniqueAttribute("Discarding", "When reloading this weapon the character throws the magazine forwards.  When it lands it explodes causing area damage equal to normal weapon damage plus an additional percentage of normal weapon damage based on the percent of ammo remaining in the magazine when it was thrown", WeaponConfig.RARITY_RARE, WeaponConfig.UNIQUE_NAME_PRE));
 
         // Baked, put in here for now
-        magazineUniqueAttributes.put("prismatic", new UniqueAttribute("Prismatic", "This weapon fires lasers instead of bullets.  Also receives a penetration boost of 20%", WeaponConfig.RARITY_RARE, WeaponConfig.UNIQUE_NAME_PRE));
+        magazineUniqueAttributes.put("prismatic", new UniqueAttribute("Prismatic", "This weapon fires lasers instead of bullets. Also receives a penetration boost of 20%", WeaponConfig.RARITY_RARE, WeaponConfig.UNIQUE_NAME_PRE));
     }
 
     private void addBarrelAttributes() {
@@ -120,7 +120,7 @@ public class AttributeHandler {
         List<String> heatDisplacingExceptions = new ArrayList<>(); heatDisplacingExceptions.add("Inferno");
         barrelUniqueAttributes.put("heatDisplacing", new UniqueAttribute("Heat-Displacing", "As this weapon fires, the barrel heats up eventually causing shots to catch fire as they leave the barrel for a short period of time", WeaponConfig.RARITY_UNCOMMON, heatDisplacingExceptions, WeaponConfig.UNIQUE_NAME_PRE));
 
-        // Baked, put in here for now
+        barrelUniqueAttributes.put("divine", new UniqueAttribute("Divine", "x% chance that shooting a teammate will give them a temporary overshield that negates all damage for 3 seconds", WeaponConfig.RARITY_UNCOMMON, WeaponConfig.UNIQUE_NAME_PRE));
         barrelUniqueAttributes.put("multiShot", new UniqueAttribute("Multi-Shot", "Shots fired from this weapon release multiple projectiles at once instead of one", WeaponConfig.RARITY_UNCOMMON, WeaponConfig.UNIQUE_NAME_PRE));
     }
 

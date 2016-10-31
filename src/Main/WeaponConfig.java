@@ -28,6 +28,9 @@ public class WeaponConfig {
     public static final int UNIQUE_NAME_MID = 2;
     public static final int UNIQUE_NAME_NONE = 3;
     public static final int MAX_CRIT_CHANCE = 60;
+    public static final int EPIC_CHANCE = 5;
+    public static final int LEGENDARY_CHANCE = 2;
+    public static final int GODLY_CHANCE = 1;
 
     private static final int NORMAL_ATTRIBUTE_CHANCE = 90;
     private static final int ATTRIBUTE_VALUE_MODIFIER = 2;

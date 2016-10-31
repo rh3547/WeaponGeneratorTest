@@ -97,6 +97,7 @@ public class Weapon {
 
         determineNames();
         rollStats();
+        rollEpic();
     }
 
     // Sniper (30): 4756214015878680209
@@ -213,6 +214,46 @@ public class Weapon {
 
     private void calculatePartCriticalDamageBoost(List<Attribute> attributes) {
 
+    }
+
+    private void rollEpic() {
+        int roll = WeaponConfig.getRandom().nextInt(100);
+
+        if (roll <= WeaponConfig.GODLY_CHANCE) {
+            boostAllStats(15);
+            this.preNames = "Godly " + preNames;
+        }
+        else if (roll <= WeaponConfig.LEGENDARY_CHANCE) {
+            boostAllStats(10);
+            this.preNames = "Legendary " + preNames;
+        }
+        else if (roll <= WeaponConfig.EPIC_CHANCE) {
+            boostAllStats(5);
+            this.preNames = "Epic " + preNames;
+        }
+    }
+
+    private void boostAllStats(int boost) {
+        stats.setDamage((int)Math.round(calculateSingleAttributeStatBoost(stats.getDamage(), boost, false)));
+
+        int accuracy = (int)Math.round(calculateSingleAttributeStatBoost(stats.getAccuracy(), boost, false));
+        stats.setAccuracy(accuracy > 100 ? 100 : accuracy);
+
+        stats.setFireRate((int)Math.round(calculateSingleAttributeStatBoost(stats.getFireRate(), boost, false)));
+        stats.setMagCapacity((int)Math.round(calculateSingleAttributeStatBoost(stats.getMagCapacity(), boost, false)));
+        stats.setReloadSpeed(calculateSingleAttributeStatBoost(stats.getReloadSpeed(), boost, true));
+        stats.setRange((int)Math.round(calculateSingleAttributeStatBoost(stats.getRange(), boost, false)));
+        stats.setSpread((int)Math.round(calculateSingleAttributeStatBoost(stats.getSpread(), boost, false)));
+        stats.setWeight(calculateSingleAttributeStatBoost(stats.getWeight(), -boost, false));
+
+        int penetration = (int)Math.round(calculateSingleAttributeStatBoost(stats.getPenetration(), boost, false));
+        stats.setPenetration(penetration);
+
+        int critChance = (int)Math.ceil(calculateSingleAttributeStatBoost(stats.getCriticalChance(), boost, false));
+        stats.setCriticalChance(critChance > WeaponConfig.MAX_CRIT_CHANCE ? WeaponConfig.MAX_CRIT_CHANCE : critChance);
+
+        int critDamage = (int)Math.round(calculateSingleAttributeStatBoost(stats.getCriticalDamage(), boost, false));
+        stats.setCriticalDamage(critDamage);
     }
 
     private void determineNames() {
